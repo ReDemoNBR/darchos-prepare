@@ -1,0 +1,35 @@
+# REQUIRED
+USER_NAME="myuser"
+USER_PASSWORD="mypassword" ## let this empty if you want an account without password
+ROOT_PASSWORD="rootpassword"
+HOSTNAME="myhostname"
+LANGUAGE="en_US"
+ARCH="armv7h"
+
+# OPTIONAL
+ADDITIONAL_LANGUAGES=("en_GB" "pt_BR")
+KEYBOARD_TYPE="/usr/share/kbd/keymaps/i386/qwerty/br-abnt2.map.gz"
+TIMEZONE="/usr/share/zoneinfo/America/Sao_Paulo"
+SWAPFILE_SIZE="2G" ## let empty for no swapfile creation
+TMP_SIZE="1G" ## let empty for no resize of /tmp - default value is half of the CPU dedicated memory
+
+
+# AUTO-CONNECT TO WIFI, IN CASE A CABLE NETWORK IS NOT PROVIDED
+WIFI_SSID="mySSID" ## let empty for cable network
+WIFI_PASS="myPSK" ## let empty for cable network
+
+
+# RASPBERRY PI EXCLUSIVE
+## For more information read:
+## https://www.raspberrypi.org/documentation/configuration/config-txt/README.md
+## https://elinux.org/RPiconfig#Audio
+##
+## If you don't know what they do, let them with the preset values
+DISABLE_SPLASH=0
+GPU_MEM=64
+SD_OVERCLOCK="" ## let empty for no overclock - default value is 50, with a value of over 100 most of microSDs (even UHS-3) don't even boot up
+DISABLE_OVERSCAN=1
+HDMI_DRIVE=2 ## if value is set to 1, it will pass audio through HDMI cable, if set to 2, it won't
+HDMI_CVT="" ## let empty for not forcing any video resolution
+SDTV_MODE=""
+SDTV_ASPECT=""

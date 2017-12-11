@@ -1,1 +1,1 @@
-# darchos-script
+# DArchOS-script
