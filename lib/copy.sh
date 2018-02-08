@@ -32,3 +32,7 @@ function copy {
         end
     fi
 }
+
+function copy_res {
+    copy "${MOUNT_POINT:?}/root/darchos/res$1" "$1"
+}

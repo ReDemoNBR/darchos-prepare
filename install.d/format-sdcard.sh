@@ -7,16 +7,21 @@ source lib/message.sh
 source conf/block.tmp
 
 
+echo "Preparing to format $DEVICE"
+sleep 5
+
 if [[ -z $DEVICE ]]; then
     echo "block device was not found"
     exit 1
 fi
+if [[ ! -b $DEVICE ]]; then
+    echo "$DEVICE is not a block device"
+    exit 1
+fi
 if [[ -z $( lsblk --output model --nodeps --noheading $DEVICE | grep SD/MMC ) ]]; then
-    echo "here"
     echo "$DEVICE is not a microSD card"
     exit 1
 fi
-echo "Unmounting devices that are mounted..."
 for mountpoint in $( lsblk --noheading --output mountpoint $DEVICE ); do
     init "Unmounting $mountpoint"
     umount $mountpoint
@@ -39,12 +44,9 @@ init "Creating FAT16 partition with 100MB for booting"
 # Create FAT16 partition with 100MB for "/boot" and format it
 parted -s "$DEVICE" mkpart primary fat16 1MiB 101MiB &> /dev/null
 if [[ $? -ne 0 ]]; then
-    end fail
+    end "fail"
     exit 1
 fi
-end
-
-init "Formatting FAT16 partition with 100MB for booting"
 mkfs.fat -F16 -v -I -n "BOOT" "${DEVICE}1" &> /dev/null
 if [[ $? -ne 0 ]]; then
     end "fail"
@@ -59,14 +61,9 @@ if [[ $? -ne 0 ]]; then
     end "fail"
     exit 1
 fi
-end
-
-init "Formatting EXT4 partition with the rest of the microSD card for root files"
 mkfs.ext4 -F -O ^64bit -L "root" "${DEVICE}2" &> /dev/null
 if [[ $? -ne 0 ]]; then
     end "fail"
     exit 1
 fi
 end
-
-echo "Formatting done"

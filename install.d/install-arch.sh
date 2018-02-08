@@ -7,12 +7,14 @@ source lib/message.sh
 source conf/conf.tmp
 source conf/urls.conf
 
+arch_file_variable_name="ARCH_FILE_${ARCH^^}"
+arch_file="${!arch_file_variable_name}"
 
 cd "$TMP_PATH"
-filename="${ARCH_FILE##*/}"
+filename="${arch_file##*/}"
 if [[ ! -f "${TMP_PATH}/$filename" ]]; then
     echo "Downloading base ArchLinuxARM:"
-    curl -Lo "$filename" "$ARCH_FILE"
+    curl --location --output "$filename" "$arch_file"
     if [[ $? -ne 0 ]]; then
         echo "Could not download ArchLinuxARM from official repository"
         exit 1

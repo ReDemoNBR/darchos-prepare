@@ -15,9 +15,11 @@ TMP_SIZE="1G" ## let empty for no resize of /tmp - default value is half of the 
 
 
 # AUTO-CONNECT TO WIFI, IN CASE A CABLE NETWORK IS NOT PROVIDED
-WIFI_SSID="mySSID" ## let empty for cable network
-WIFI_PASS="myPSK" ## let empty for cable network
+WIFI_SSID="MyWifiName" ## let empty for cable network
+WIFI_PASS="mywifipassword" ## let empty for cable network
 
+## SSH
+SSH=1
 
 # RASPBERRY PI EXCLUSIVE
 ## For more information read:

@@ -1,8 +1,0 @@
-NAME="DArchOS ARM"
-ID=darchos
-ID_LIKE=arch
-PRETTY_NAME="DArchOS ARM"
-ANSI_COLOR="1;37"
-HOME_URL="https://redemonbr.github.io/darchos/"
-SUPPORT_URL="https://redemonbr.github.io/darchos/"
-BUG_REPORT_URL="https://redemonbr.github.io/darchos/"

@@ -13,7 +13,7 @@ file="darchos.tar.gz"
 cd ${TMP_PATH}
 if [[ ! -f "${TMP_PATH}/$file" ]]; then
     echo "Downloading DArchOS resources:"
-    curl -Lo "$file" "${DARCHOS_REPO}/archive/${BRANCH}.tar.gz"
+    curl --location --output "$file" "${DARCHOS_REPO}/archive/${BRANCH}.tar.gz"
     if [[ $? -ne 0 ]]; then
         echo "Error while downloading DArchOS resources from ${DARCHOS_REPO}/archive/${BRANCH}.tar.gz"
         exit 1
@@ -23,12 +23,14 @@ else
 fi
 
 init "Extracting DArchOS resources"
-tar --extract --preserve-permissions --file "$file" --directory "${MOUNT_POINT:?}/root/" &> /dev/null
+bsdtar -xpf "$file" -C "${MOUNT_POINT:?}/root/" &> /dev/null
+end
 if [[ -z $NO_REMOVE_DARCHOS ]]; then
     init "Removing $file"
     rm --force "$file"
     end
 fi
+init "Fixing name and permissions"
 mv --force "${MOUNT_POINT:?}/root/darchos-${BRANCH}" "${MOUNT_POINT:?}/root/darchos"
 chown --recursive root "${MOUNT_POINT:?}/root/darchos"
 sync
