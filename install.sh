@@ -90,7 +90,7 @@ if [[ -z $DEVICE ]]; then
     run "confirm-device"
     source ./conf/block.tmp                 ## provides $DEVICE variable after user had selected the device to format
 else
-    if [[ -z $( lsblk --output model --nodeps --noheading $DEVICE | grep SD/MMC ) ]]; then
+    if [[ -z $( lsblk --output model --nodeps --noheading $DEVICE | grep SD_MMC ) ]]; then
         echo "$DEVICE is not a microSD card"
         exit 1
     fi

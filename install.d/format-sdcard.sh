@@ -18,7 +18,7 @@ if [[ ! -b $DEVICE ]]; then
     echo "$DEVICE is not a block device"
     exit 1
 fi
-if [[ -z $( lsblk --output model --nodeps --noheading $DEVICE | grep SD/MMC ) ]]; then
+if [[ -z $( lsblk --output model --nodeps --noheading $DEVICE | grep SD_MMC ) ]]; then
     echo "$DEVICE is not a microSD card"
     exit 1
 fi

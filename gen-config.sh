@@ -26,6 +26,7 @@ EXCLUSIVE OPTIONS FOR -S:\n\
 VALID SIZES:\n\
   Use K for kilobytes, M for megabytes and G for gigabytes.\n\
   Ex: 512K for 512 kilobytes, 128M for 128 megabytes and 2G for 2 gigabytes"
+  exit 0
 }
 
 [[ -n $( echo "$@" | grep --perl-regexp "(^|\s)--help($|\s)" ) ]] && help

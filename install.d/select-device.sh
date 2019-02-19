@@ -8,7 +8,7 @@ file="conf/block.tmp"
 [[ -f $file ]] && rm "$file"
 
 # ask which one to start formating
-blocks=$( lsblk --paths --output name,size,model --nodeps | grep SD/MMC )
+blocks=$( lsblk --paths --output name,size,model --nodeps | grep SD_MMC )
 sdcards=()
 for block in $blocks; do
     sd=${block%% *}

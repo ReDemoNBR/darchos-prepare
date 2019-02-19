@@ -19,7 +19,7 @@ for req_com in "${required_commands[@]}"; do
     fi
 done
 
-if [[ -z $( lsblk -o name,size,model | grep SD/MMC ) ]]; then
+if [[ -z $( lsblk -o name,size,model | grep SD_MMC ) ]]; then
     echo "no SD/microSD card detected"
     exit 1
 fi
